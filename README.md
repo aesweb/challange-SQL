@@ -1,5 +1,3 @@
-# PatikaDev-SQL-Homework
-
 ## Homework : 1
 
 #####  1  SELECT title , description FROM film;
