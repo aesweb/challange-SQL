@@ -78,17 +78,17 @@ SELECT COUNT(DISTINCT replacement_cost) FROM film ;
 
 #### Film tablosunda bulunan film isimlerinde (title) kaç tanesini T karakteri ile başlar ve aynı zamanda rating 'G' ye eşittir?
 ~~~sql 
-	SELECT COUNT(*) FROM film WHERE title ~~ 'T%' and rating = 'G' ;
+SELECT COUNT(*) FROM film WHERE title ~~ 'T%' and rating = 'G' ;
 ~~~
 
 #### Country tablosunda bulunan ülke isimlerinden (country) kaç tanesi 5 karakterden oluşmaktadır?
 ~~~sql 
-	SELECT COUNT(*) FROM country WHERE country ~~* '_____' ;
+SELECT COUNT(*) FROM country WHERE country ~~* '_____' ;
 ~~~
 
 #### City tablosundaki şehir isimlerinin kaçtanesi 'R' veya r karakteri ile biter?
 ~~~sql 
-	SELECT COUNT(*) FROM city WHERE city ~~* '%r' ;
+SELECT COUNT(*) FROM city WHERE city ~~* '%r' ;
 ~~~
 
 ## Homework : 5
@@ -107,6 +107,29 @@ SELECT * FROM film WHERE title ~~* '%n'  ORDER BY length OFFSET 5 LIMIT 5;
 ~~~sql 
 SELECT * FROM customer WHERE store_id ='1' ORDER BY last_name DESC LIMIT 4;
 ~~~
+
+## Homework : 6
+
+#### Film tablosunda bulunan rental_rate sütunundaki değerlerin ortalaması nedir?
+~~~sql 
+SELECT AVG(rental_rate) FROM film ;
+~~~
+
+#### Film tablosunda bulunan filmlerden kaçtanesi 'C' karekteri ile başlar?
+~~~sql 
+SELECT COUNT(*) FROM film WHERE title ~~'C%' ;
+~~~
+
+#### Film tablosunda bulunan filmlerden rental_rate değeri 0.99 a eşit olan en uzun (length) film kaç dakikadır?
+~~~sql 
+SELECT MAX(length) FROM film WHERE rental_rate = '0.99' ;
+~~~
+
+#### Film tablosunda bulunan filmlerin uzunluğu 150 dakikadan büyük olanlarına ait kaç farklı replacement_cost değeri vardır?
+~~~sql 
+SELECT COUNT(DISTINCT replacement_cost) FROM film WHERE length > '150' ;
+~~~
+
 
 
 
