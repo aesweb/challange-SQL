@@ -327,7 +327,44 @@ EXCEPT ALL
 (SELECT first_name FROM customer);
 ~~~
 
+## Homework : 12
 
+#### Film tablosunda film uzunluğu length sütununda gösterilmektedir. Uzunluğu ortalama film uzunluğundan fazla kaç tane film vardır?
+~~~sql 
+SELECT COUNT(*) as NUMBEROFMOVİES FROM film WHERE length > ANY (SELECT ROUND(AVG(length)) FROM film)
+~~~
+
+#### Film tablosunda en yüksek rental_rate değerine sahip kaç tane film vardır?
+~~~sql 
+SELECT COUNT(*) FROM film WHERE rental_rate = ANY (SELECT MAX(rental_rate) FROM film)
+~~~
+
+#### Film tablosunda en düşük rental_rate ve en düşük replacement_cost değerlerine sahip filmleri sıralayınız.
+~~~sql 
+SELECT DISTINCT title FROM film WHERE rental_rate = any (SELECT MIN(rental_rate) FROM film) AND replacement_cost = any (SELECT MIN(replacement_cost) FROM film)
+~~~
+
+#### Payment tablosunda en fazla sayıda alışveriş yapan müşterileri(customer) sıralayınız.
+##### Condition = 1
+~~~sql 
+SELECT first_name,last_name
+FROM customer c
+JOIN payment p
+ON ( p.customer_id = c.customer_id )
+WHERE amount = ( SELECT MAX(amount) from payment );
+~~~
+
+##### Condition = 2
+~~~sql 
+SELECT first_name, last_name
+FROM customer
+WHERE customer_id = any
+(
+SELECT customer_id
+FROM payment
+WHERE amount = ( SELECT MAX(amount) from payment )
+)
+~~~
 
 
 
