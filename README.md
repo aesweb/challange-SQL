@@ -1,161 +1,161 @@
-## Homework : 1
+## 1
 
-#### Film tablosunda bulunan title ve description sütunlarındaki verileri sıralayınız.
+#### Sort the data in the title and description columns in the movie table.
 ~~~sql 
 SELECT title , description FROM film;
 ~~~
 
-#### Film tablosunda bulunan tüm sütunlardaki verileri film uzunluğu (length) 60 dan büyük VE 75 ten küçük olma koşullarıyla sıralayınız.
+#### Sort the data in all columns in the movie table with the condition that the movie length is greater than 60 AND less than 75.
 ~~~sql  
 SELECT * FROM film WHERE length >= 60 and length <= 75 ;
 ~~~
 
-#### Film tablosunda bulunan tüm sütunlardaki verileri rental_rate 0.99 VE replacement_cost 12.99 VEYA 28.99 olma koşullarıyla sıralayınız.
+#### Sort the data in all columns in the movie table with the conditions rental_rate 0.99 AND replacement_cost 12.99 OR 28.99.
 ~~~sql 
 SELECT * FROM film WHERE rental_rate = 0.99 and replacement_cost = 12.99 or rental_rate = 0.99 and replacement_cost = 28.99 ; 
 ~~~
 
-#### Customer tablosunda bulunan first_name sütunundaki değeri 'Mary' olan müşterinin last_name sütunundaki değeri nedir?
+#### What is the value in the last_name column of the customer whose value in the first_name column in the Customer table is 'Mary'?
 ~~~sql 
 SELECT last_name FROM customer WHERE first_name = 'Mary';
 ~~~
 
-#### Film tablosundaki uzunluğu(length) 50 ten büyük OLMAYIP aynı zamanda rental_rate değeri 2.99 veya 4.99 OLMAYAN verileri sıralayınız.
+#### Sort the data in the movie table that does NOT have a length greater than 50 and does NOT have a rental_rate of 2.99 or 4.99.
 ~~~sql  
 SELECT * FROM film WHERE length < 50 and NOT (rental_rate = 2.99 or rental_rate = 4.99)
 ~~~
 
-## Homework : 2
+## 2
 
-#### Film tablosunda bulunan tüm sütunlardaki verileri replacement cost değeri 12.99 dan büyük eşit ve 16.99 küçük olma koşuluyla sıralayınız ( BETWEEN - AND yapısını kullanınız.)
+#### Sort the data in all columns in the movie table, provided that the replacement cost value is greater than 12.99 and less than 16.99 (use the BETWEEN - AND structure).
 ~~~sql
 SELECT * FROM film WHERE replacement_cost BETWEEN 12.99 and 16.99;
 ~~~
 
-#### Actor tablosunda bulunan first_name ve last_name sütunlardaki verileri first_name 'Penelope' veya 'Nick' veya 'Ed' değerleri olması koşuluyla sıralayınız. ( IN operatörünü kullanınız.)
+#### Sort the data in the first_name and last_name columns in the Actor table, provided that first_name is 'Penelope' or 'Nick' or 'Ed' (use the IN operator).
 ~~~sql
 SELECT first_name , last_name FROM actor WHERE first_name  IN ('Penelope', 'Nick', 'Ed');
 ~~~
 
-#### Film tablosunda bulunan tüm sütunlardaki verileri rental_rate 0.99, 2.99, 4.99 VE replacement_cost 12.99, 15.99, 28.99 olma koşullarıyla sıralayınız.(IN operatörünü kullanınız.)
+#### Sort the data in all columns in the movie table with the conditions rental_rate 0.99, 2.99, 4.99 AND replacement_cost 12.99, 15.99, 28.99 (use IN operator).
 ~~~sql 
 SELECT * FROM film WHERE rental_rate  IN (0.99, 2.99, 4.99) and replacement_cost IN (12.99, 15.99, 28.99);
 ~~~
 
-## Homework : 3
+## 3
 
-#### Country tablosunda bulunan country sütunundaki ülke isimlerinden 'A' karakteri ile başlayıp 'a' karakteri ile sonlananları sıralayınız.
+#### List the country names in the country column of the country table starting with the character 'A' and ending with the character 'a'.
 ~~~sql 
 SELECT country FROM country WHERE country ~~ 'A%a' ;
 ~~~
 
-#### Country tablosunda bulunan country sütunundaki ülke isimlerinden en az 6 karakterden oluşan ve sonu 'n' karakteri ile sonlananları sıralayınız.
+#### List the country names in the country column of the country table that have at least 6 characters and end with the character 'n'.
 ~~~sql 
 SELECT country From Country WHERE LENGTH(country) >= 6 AND country ~~'%n';
 ~~~
 
-#### Film tablosunda bulunan title sütunundaki film isimlerinden en az 4 adet büyük ya da küçük harf farketmesizin 'T' karakteri içeren
+#### At least 4 movie titles in the title column of the movie table containing at least 4 uppercase or lowercase 'T' characters
 ~~~sql 
 SELECT title FROM film WHERE title ~~* '%t%t%t%t%';
 ~~~
 
-#### Film tablosunda bulunan tüm sütunlardaki verilerden title 'C' karakteri ile başlayan ve uzunluğu (length) 90 dan büyük olan ve rental_rate 2.99 olan verileri sıralayınız.
+#### Sort the data in all columns in the movie table starting with title 'C', length greater than 90 and rental_rate 2.99.
 ~~~sql 
 SELECT * FROM film WHERE title ~~ 'C%' and length > 90 and rental_rate = 2.99 ;
 ~~~
 
-## Homework : 4
+## 4
 
 #### Film tablosunda bulunan replacement_cost sütununda bulunan birbirinden farklı değerleri sıralayınız.
 ~~~sql 
 SELECT DISTINCT replacement_cost FROM film ;
 ~~~
 
-#### Film tablosunda bulunan replacement_cost sütununda birbirinden farklı kaç tane veri vardır?
+#### How many different data are in the replacement_cost column in the movie table?
 ~~~sql 
 SELECT COUNT(DISTINCT replacement_cost) FROM film ;
 ~~~
 
-#### Film tablosunda bulunan film isimlerinde (title) kaç tanesini T karakteri ile başlar ve aynı zamanda rating 'G' ye eşittir?
+#### How many of the movie titles in the movie table start with the character T and also have a rating equal to 'G'?
 ~~~sql 
 SELECT COUNT(*) FROM film WHERE title ~~ 'T%' and rating = 'G' ;
 ~~~
 
-#### Country tablosunda bulunan ülke isimlerinden (country) kaç tanesi 5 karakterden oluşmaktadır?
+#### How many of the country names in the Country table have 5 characters?
 ~~~sql 
 SELECT COUNT(*) FROM country WHERE country ~~* '_____' ;
 ~~~
 
-#### City tablosundaki şehir isimlerinin kaçtanesi 'R' veya r karakteri ile biter?
+#### How many of the city names in the City table end with the character 'R' or r?
 ~~~sql 
 SELECT COUNT(*) FROM city WHERE city ~~* '%r' ;
 ~~~
 
-## Homework : 5
+## 5
 
-#### Film tablosunda bulunan ve film ismi (title) 'n' karakteri ile biten en uzun (length) 5 filmi sıralayınız.
+#### List the 5 longest movies in the movie table whose title ends with the character 'n'.
 ~~~sql 
 SELECT * FROM film WHERE title ~~* '%n'  ORDER BY length DESC LIMIT 5;
 ~~~
 
-#### Film tablosunda bulunan ve film ismi (title) 'n' karakteri ile biten en kısa (length) ikinci 5 filmi sıralayınız.
+#### List the second 5 shortest (length) movies in the movie table whose title ends with the character 'n'.
 ~~~sql 
 SELECT * FROM film WHERE title ~~* '%n'  ORDER BY length OFFSET 5 LIMIT 5;
 ~~~
 
-#### Customer tablosunda bulunan last_name sütununa göre azalan yapılan sıralamada store_id 1 olmak koşuluyla ilk 4 veriyi sıralayınız.
+#### Sort the first 4 data in descending order according to the last_name column in the Customer table, provided that store_id is 1.
 ~~~sql 
 SELECT * FROM customer WHERE store_id ='1' ORDER BY last_name DESC LIMIT 4;
 ~~~
 
-## Homework : 6
+## 6
 
-#### Film tablosunda bulunan rental_rate sütunundaki değerlerin ortalaması nedir?
+#### What is the average of the values in the rental_rate column in the movie table?
 ~~~sql 
 SELECT AVG(rental_rate) FROM film ;
 ~~~
 
-#### Film tablosunda bulunan filmlerden kaçtanesi 'C' karekteri ile başlar?
+#### How many of the movies in the movie table start with the character 'C'?
 ~~~sql 
 SELECT COUNT(*) FROM film WHERE title ~~'C%' ;
 ~~~
 
-#### Film tablosunda bulunan filmlerden rental_rate değeri 0.99 a eşit olan en uzun (length) film kaç dakikadır?
+#### How many minutes is the longest movie in the movie table with a rental_rate equal to 0.99?
 ~~~sql 
 SELECT MAX(length) FROM film WHERE rental_rate = '0.99' ;
 ~~~
 
-#### Film tablosunda bulunan filmlerin uzunluğu 150 dakikadan büyük olanlarına ait kaç farklı replacement_cost değeri vardır?
+#### How many different replacement_cost values are in the movie table for movies with a length greater than 150 minutes?
 ~~~sql 
 SELECT COUNT(DISTINCT replacement_cost) FROM film WHERE length > '150' ;
 ~~~
 
-## Homework : 7
+## 7
 
-#### Film tablosunda bulunan filmleri rating değerlerine göre gruplayınız.
+#### Group the movies in the movie table according to their rating values.
 ~~~sql 
 SELECT rating FROM film GROUP BY rating ;
 ~~~
 
-#### Film tablosunda bulunan filmleri replacement_cost sütununa göre grupladığımızda film sayısı 50 den fazla olan replacement_cost değerini ve karşılık gelen film sayısını sıralayınız.
+#### When we group the movies in the movie table according to the replacement_cost column, sort the replacement_cost value with more than 50 movies and the corresponding number of movies.
 ~~~sql 
 SELECT replacement_cost,COUNT(*) FROM film GROUP BY replacement_cost HAVING COUNT(*) >  50;
 ~~~
 
-#### Customer tablosunda bulunan store_id değerlerine karşılık gelen müşteri sayılarını nelerdir?
+#### What are the number of customers corresponding to the store_id values in the Customer table?
 ~~~sql 
 SELECT store_id ,COUNT(*) FROM customer GROUP BY store_id 
 ~~~
 
-#### City tablosunda bulunan şehir verilerini country_id sütununa göre gruplandırdıktan sonra en fazla şehir sayısı barındıran country_id bilgisini ve şehir sayısını paylaşınız.
+#### After grouping the city data in the City table according to the country_id column, share the country_id information and the number of cities with the highest number of cities.
 
 ~~~sql 
 SELECT country_id ,COUNT(*) FROM city GROUP BY country_id ORDER BY COUNT(*) DESC 
 ~~~
 
-## Homework : 8
+## 8
 
-#### Test veritabanınızda employee isimli sütun bilgileri id(INTEGER), name VARCHAR(50), birthday DATE, email VARCHAR(100) olan bir tablo oluşturalım.
+#### In your test database, let's create a table named employee with column information id(INTEGER), name VARCHAR(50), birthday DATE, email VARCHAR(100).
 ~~~sql 
 CREATE TABLE employee (
   id SERIAL PRIMARY KEY,
@@ -165,7 +165,7 @@ CREATE TABLE employee (
 );
 ~~~
 
-#### Oluşturduğumuz employee tablosuna 'Mockaroo' servisini kullanarak 50 adet veri ekleyelim.
+#### Let's add 50 data to the employee table we created using the 'Mockaroo' service.
 ~~~sql 
 insert into employee (name, email, birthday) values ('Mack', 'mcartledge0@google.co.uk', '2008-07-22');
 insert into employee (name, email, birthday) values ('Fredric', 'fweich1@com.com', null);
@@ -219,7 +219,7 @@ insert into employee (name, email, birthday) values ('Normy', 'ngoathrop1c@share
 insert into employee (name, email, birthday) values ('Elissa', 'eheninghem1d@engadget.com', null);
 ~~~
 
-#### Sütunların her birine göre diğer sütunları güncelleyecek 5 adet UPDATE işlemi yapalım.
+#### Let's do 5 UPDATE operations that will update other columns according to each of the columns.
 ~~~sql 
 UPDATE employee SET name = 'Ciguli', birthday = '24-06-2004' WHERE name = 'Elissa' RETURNING * ;
 ~~~
@@ -236,7 +236,7 @@ UPDATE employee SET  birthday = '24-06-2004' WHERE name = 'Mack' RETURNING * ;
 UPDATE employee SET name = 'Ecrin', email = 'ecnebiecrin@gmail.com', birthday = '24-06-2004' WHERE name = 'Mack' RETURNING * ;
 ~~~
 
-#### Sütunların her birine göre ilgili satırı silecek 5 adet DELETE işlemi yapalım.
+#### Let's do 5 DELETE operations that will delete the corresponding row according to each of the columns.
 ~~~sql 
 DELETE FROM employee WHERE name = 'Fredric';
 ~~~
@@ -253,64 +253,64 @@ DELETE FROM employee WHERE email = 'sjaukovic9@google.fr';
 DELETE FROM employee WHERE name = 'F%';
 ~~~
 
-## Homework : 9
+## 9
 
-#### city tablosu ile country tablosunda bulunan şehir (city) ve ülke (country) isimlerini birlikte görebileceğimiz INNER JOIN sorgusunu yazınız.
+#### Write the INNER JOIN query that we can see the city and country names in the city table and country table together.
 ~~~sql 
 SELECT city, country FROM city INNER JOIN country ON city.country_id = country.country_id;
 ~~~
 
-#### customer tablosu ile payment tablosunda bulunan payment_id ile customer tablosundaki first_name ve last_name isimlerini birlikte görebileceğimiz INNER JOIN sorgusunu yazınız.
+#### Write the INNER JOIN query in which we can see the payment_id in the customer table and payment table and the first_name and last_name names in the customer table together.
 ~~~sql 
 SELECT payment_id , first_name, last_name FROM customer INNER JOIN payment ON customer.customer_id = payment.customer_id;
 ~~~
 
-#### customer tablosu ile rental tablosunda bulunan rental_id ile customer tablosundaki first_name ve last_name isimlerini birlikte görebileceğimiz INNER JOIN sorgusunu yazınız.
+#### Write the INNER JOIN query in which we can see the first_name and last_name names in the customer table together with the rental_id in the customer table and rental table.
 ~~~sql 
 SELECT rental_id , first_name, last_name FROM customer INNER JOIN rental ON customer.customer_id = rental.customer_id;
 ~~~
 
-## Homework : 10
+## 10
 
-#### city tablosu ile country tablosunda bulunan şehir (city) ve ülke (country) isimlerini birlikte görebileceğimiz LEFT JOIN sorgusunu yazınız.
+#### Write the LEFT JOIN query that we can see the city and country names in the city table and country table together.
 ~~~sql 
 SELECT city, country FROM city LEFT JOIN country ON city.country_id = country.country_id;
 ~~~
 
-#### customer tablosu ile payment tablosunda bulunan payment_id ile customer tablosundaki first_name ve last_name isimlerini birlikte görebileceğimiz RIGHT JOIN sorgusunu yazınız.
+#### Write the RIGHT JOIN query where we can see the payment_id in the customer table and payment table and the first_name and last_name names in the customer table together.
 ~~~sql 
 SELECT rental_id, first_name, last_name FROM customer FULL JOIN rental ON customer.customer_id = rental.customer_id;
 ~~~
 
-#### customer tablosu ile rental tablosunda bulunan rental_id ile customer tablosundaki first_name ve last_name isimlerini birlikte görebileceğimiz FULL JOIN sorgusunu yazınız.
+#### Write the FULL JOIN query in which we can see the first_name and last_name names in the customer table together with the rental_id in the customer table and rental table.
 ~~~sql 
 SELECT rental_id, first_name, last_name FROM customer FULL JOIN rental ON customer.customer_id = rental.customer_id;
 ~~~
 
-## Homework : 11
+## 11
 
-#### actor ve customer tablolarında bulunan first_name sütunları için tüm verileri sıralayalım.
+#### Let's sort all data for first_name columns in actor and customer tables.
 ~~~sql 
 (SELECT first_name FROM actor)
 UNION
 (SELECT first_name FROM customer);
 ~~~
 
-#### actor ve customer tablolarında bulunan first_name sütunları için kesişen verileri sıralayalım.
+#### Let's sort the intersecting data for first_name columns in actor and customer tables.
 ~~~sql 
 (SELECT first_name FROM actor)
 INTERSECT
 (SELECT first_name FROM customer);
 ~~~
 
-#### actor ve customer tablolarında bulunan first_name sütunları için ilk tabloda bulunan ancak ikinci tabloda bulunmayan verileri sıralayalım.
+#### For the first_name columns in the actor and customer tables, let's sort the data in the first table but not in the second table.
 ~~~sql 
 (SELECT first_name FROM actor)
 EXCEPT 
 (SELECT first_name FROM customer);
 ~~~
 
-#### İlk 3 sorguyu tekrar eden veriler için de yapalım.
+#### Let's do the first 3 queries for repeated data.
 ~~~sql 
 (SELECT first_name FROM actor)
 UNION ALL
@@ -327,24 +327,24 @@ EXCEPT ALL
 (SELECT first_name FROM customer);
 ~~~
 
-## Homework : 12
+## 12
 
-#### Film tablosunda film uzunluğu length sütununda gösterilmektedir. Uzunluğu ortalama film uzunluğundan fazla kaç tane film vardır?
+#### In the movie table, the movie length is shown in the length column. How many movies are longer than the average movie length?
 ~~~sql 
 SELECT COUNT(*) as NUMBEROFMOVİES FROM film WHERE length > ANY (SELECT ROUND(AVG(length)) FROM film)
 ~~~
 
-#### Film tablosunda en yüksek rental_rate değerine sahip kaç tane film vardır?
+#### How many movies have the highest rental_rate in the movie table?
 ~~~sql 
 SELECT COUNT(*) FROM film WHERE rental_rate = ANY (SELECT MAX(rental_rate) FROM film)
 ~~~
 
-#### Film tablosunda en düşük rental_rate ve en düşük replacement_cost değerlerine sahip filmleri sıralayınız.
+#### In the movie table, list the movies with the lowest rental_rate and the lowest replacement_cost.
 ~~~sql 
 SELECT DISTINCT title FROM film WHERE rental_rate = any (SELECT MIN(rental_rate) FROM film) AND replacement_cost = any (SELECT MIN(replacement_cost) FROM film)
 ~~~
 
-#### Payment tablosunda en fazla sayıda alışveriş yapan müşterileri(customer) sıralayınız.
+#### List the customers with the highest number of purchases in the Payment table.
 ##### Condition = 1
 ~~~sql 
 SELECT first_name,last_name
